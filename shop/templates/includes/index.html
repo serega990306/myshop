@@ -10,37 +10,40 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
-
 <body>
-
+{% load static %}
 <div id="masterhead">
     <div class="container">
         <div class="slideshow">
             <div id="slideshow" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="item active">
-                        <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First Slide">
+                    <div class="item active" style="background: rgba(255,255,255,0)">
                         <div class="container">
-                            <div class="carousel-caption">
-                                <h1>SlideShow 1</h1>
+                            <div class="row">
+                                {% for product in products %}
+                                    <div class="col-sm-3 card">
+                                      <a href="{{ product.get_absolute_url }}">
+                                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}" class="img-responsive">
+                                      </a>
+                                      <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
+                                      Цена: {{ product.price }} руб.
+                                    </div>
+                                {% endfor %}
+                                <div class="col-sm-3 card">erg</div>
+                                <div class="col-sm-3 card">erverv</div>
+                                <div class="col-sm-3 card">wegfwgf</div>
                             </div>
                         </div>
                     </div><!-- /. Item Active -->
-                    <div class="item">
-                    <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAGZmZgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second Slide">
-                    <div class="container">
-                    <div class="carousel-caption">
-                    <h1>SlideShow 2</h1>
-                    </div>
-                    </div>
-                    </div><!-- /. Item -->
-                    <div class="item">
-                    <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-                    <div class="container">
-                    <div class="carousel-caption">
-                    <h1>SlideShow 3</h1>
-                    </div>
-                    </div>
+                    <div class="item" style="background: rgba(255,255,255,0)">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-3 card">wefgwgf</div>
+                                <div class="col-sm-3 card">erg</div>
+                                <div class="col-sm-3 card">erverv</div>
+                                <div class="col-sm-3 card">wegfwgf</div>
+                            </div>
+                        </div>
                     </div><!-- /. Item -->
                 </div><!-- /. Carousel-Inner -->
 
@@ -53,7 +56,6 @@
                         <div class="carousel-indicators">
                             <li data-target="#slideshow" data-slide-to="0" class="active"></li>
                             <li data-target="#slideshow" data-slide-to="1"></li>
-                            <li data-target="#slideshow" data-slide-to="2"></li>
                         </div>
                     </div>
                 </div>

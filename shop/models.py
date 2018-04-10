@@ -62,3 +62,10 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('shop:ProductDetail', args=[self.id, self.slug])
+
+
+class Top_Product(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='products', verbose_name="Товар")
+
+    def __str__(self):
+        return self.product.name
