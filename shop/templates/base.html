@@ -18,8 +18,15 @@
 </head>
 <body>
     {% include "includes/header.html" %}
-    {% include "includes/top_sale.html" %}
+    {% if top_products %}
+        {% include "includes/top_sale.html" %}
+    {% endif %}
 
+    <div style="background: black;text-align: center">
+        <p class="bold shipping">БЕСПЛАТНАЯ ДОСТАВКА ПРИ ЗАКАЗЕ ОТ 5 000 РУБЛЕЙ</p>
+    </div>
+
+    <!--
   <section id="header">
 
     <div class="top-bl">
@@ -39,9 +46,12 @@
       </div>
     </div>
   </section>
-  <section id="content row" class="container">
+  -->
+
+  <section>
     {% block content %}{% endblock %}
   </section>
+
 
 </body>
 </html>

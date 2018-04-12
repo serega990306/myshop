@@ -67,5 +67,9 @@ class Product(models.Model):
 class Top_Product(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='products', verbose_name="Товар")
 
+    class Meta:
+        verbose_name = 'Топ продаж'
+        verbose_name_plural = 'Топ продаж'
+
     def __str__(self):
         return self.product.name

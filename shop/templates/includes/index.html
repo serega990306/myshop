@@ -20,16 +20,26 @@
                     <div class="item active" style="background: rgba(255,255,255,0)">
                         <div class="container">
                             <div class="row">
-                                {% for product in products %}
-                                    <div class="col-sm-3 card">
-                                      <a href="{{ product.get_absolute_url }}">
-                                        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}" class="img-responsive">
-                                      </a>
-                                      <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
-                                      Цена: {{ product.price }} руб.
+                                {% for e in top_products %}
+                                    <div class="col-sm-3 card linkblock" onclick="location.href='{{ e.product.get_absolute_url }}';">
+                                        <a href="{{ e.product.get_absolute_url }}">
+                                            <img style="max-height: 200px" src="{% if e.product.image %}{{ e.product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}">
+                                        </a>
+                                        <p class="light" style="margin-bottom: 3px">
+                                            {{ e.product.brand }}<br>
+                                        </p>
+                                        <p style="font-size: 120%;margin-bottom: 3px">
+                                            {{ e.product.name }}
+                                        </p>
+                                        <p class="light">
+                                            {{ e.product.category }}<br>
+                                            Цена: {{ e.product.price }} руб.
+                                        </p>
+                                        <div style="border-top: 1px solid #cfd3d7;width: 100%">
+                                            <p class="bold" style="margin-top: 10px">КУПИТЬ</p>
+                                        </div>
                                     </div>
                                 {% endfor %}
-                                <div class="col-sm-3 card">erg</div>
                                 <div class="col-sm-3 card">erverv</div>
                                 <div class="col-sm-3 card">wegfwgf</div>
                             </div>

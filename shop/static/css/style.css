@@ -1,5 +1,5 @@
 body{
-  background: #fbedf1;
+  background: #ffffff;
 }
 
 @font-face{
@@ -264,3 +264,20 @@ title {
   background-size: cover;
 }
 
+.link a {
+    display: block;
+}
+
+.pic {
+    text-align: center;
+}
+
+.linkblock {
+    cursor:pointer
+}
+
+.shipping{
+	color: white;
+    font-size: 170%;
+    padding: 10px;
+}

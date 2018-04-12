@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {% if category %} {{ category.name }} {% else %} Страница товаров {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        {% for cat in categories %}
+            <div class="row">
+                <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

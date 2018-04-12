@@ -17,7 +17,8 @@ def ProductList(request, category_slug=None):
     content['categories'] = categories
     content['products'] = products
     content['top_products'] = top
-    return render(request, 'product/list.html', content)
+    content['top_products'] = top
+    return render(request, 'product/slide_list.html', content)
 
 
 def ProductListByBrand(request, category_slug=None):
