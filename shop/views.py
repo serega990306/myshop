@@ -18,23 +18,7 @@ def ProductList(request, category_slug=None):
     content['products'] = products
     content['top_products'] = top
     content['top_products'] = top
-    return render(request, 'product/slide_list.html', content)
-
-
-def ProductListByBrand(request, category_slug=None):
-    '''
-    brand = None
-    brands = Brand.objects.all()
-    products = Product.objects.filter(available=True)
-    print(brands)
-    if category_slug:
-        brand = get_object_or_404(Brand, slug=category_slug)
-        products = products.filter(category=brand)
-    return render(request, 'product/list.html', {
-        'brand': brand,
-        'brands': brands,
-        'products': products
-    })'''
+    return render(request, 'product/list.html', content)
 
 
 def ProductDetail(request, id, slug):

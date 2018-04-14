@@ -24,13 +24,34 @@
     <h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
     <div class="items row">
       {% for product in products %}
+          <!--
         <div class="item col-sm-4">
           <a href="{{ product.get_absolute_url }}">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}" class="img-responsive">
+            <img style="max-height: 300px" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}" class="img-responsive">
           </a>
           <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
           {{ product.price }} руб.
         </div>
+        -->
+
+          <div class="col-sm-3 card linkblock" onclick="location.href='{{ product.get_absolute_url }}';">
+                <a href="{{ product.get_absolute_url }}">
+                    <img style="max-height: 200px;max-width: 170px;margin-bottom: 10px" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}">
+                </a>
+                <p class="light" style="margin-bottom: 3px">
+                    {{ product.brand }}<br>
+                </p>
+                <p style="font-size: 120%;margin-bottom: 3px">
+                    {{ product.name }}
+                </p>
+                <p class="light">
+                    {{ e.product.category }}<br>
+                    Цена: {{ product.price }} руб.
+                </p>
+                <div style="border-top: 1px solid #cfd3d7;width: 100%">
+                    <p class="bold" style="margin-top: 10px">КУПИТЬ</p>
+                </div>
+            </div>
       {% endfor %}
     </div>
   </div>
