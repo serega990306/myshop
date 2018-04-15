@@ -8,20 +8,20 @@
 {% block content %}
 
   <div id="sidebar" class="col-sm-3">
-    <h3>Категории</h3>
+    <h3 class="bold" style="font-size: 170%;margin: .67em 0">Категории</h3>
     <ul>
       <li {% if not category %} class="selected" {% endif %}>
-        <a href="{% url "shop:ProductList" %}">Все</a>
+        <a class="light" style="font-size: 110%" href="{% url "shop:ProductList" %}">Все</a>
       </li>
       {% for cat in categories %}
         <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-          <a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+          <a class="light" style="font-size: 110%" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
         </li>
       {% endfor %}
     </ul>
   </div>
   <div id="main" class="product_list col-sm-9">
-    <h1>{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
+    <h1 class="bold" style="font-size: 170%">{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
     <div class="items row">
       {% for product in products %}
           <!--
@@ -55,4 +55,75 @@
       {% endfor %}
     </div>
   </div>
+
+
+    <!--  СТРАНИЦЫ -->
+    <div class="row">
+        <div class="large-3 large-offset-5 columns">
+            <ul class="pagination">
+                {% if not category %}
+                    {% if products.has_previous %}
+                        <li class="arrow">
+                            <a href="/page/{{ products.previous_page_number }}">&laquo</a>
+                        </li>
+                    {% else %}
+                        <li class="arrow unavailable">
+                            <a href="">&laquo</a>
+                        </li>
+                    {% endif %}
+                    {% for page in products.paginator.page_range %}
+                        {% if page == products.number %}
+                            <li class="current">
+                                <a class="light" href="/page/{{ page }}">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="/page/{{ page }}">{{ page }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if products.has_next %}
+                        <li class="arrow">
+                            <a href="/page/{{ products.next_page_number }}">&raquo</a>
+                        </li>
+                    {% else %}
+                        <li class="arrow unavailable">
+                            <a href="">&raquo</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    {% if products.has_previous %}
+                        <li class="arrow">
+                            <a href="page/{{ products.previous_page_number }}">&laquo</a>
+                        </li>
+                    {% else %}
+                        <li class="arrow unavailable">
+                            <a href="">&laquo</a>
+                        </li>
+                    {% endif %}
+                    {% for page in products.paginator.page_range %}
+                        {% if page == products.number %}
+                            <li class="current">
+                                <a class="light" href="page/{{ page }}">{{ page }}</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="page/{{ page }}">{{ page }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if products.has_next %}
+                        <li class="arrow">
+                            <a href="page/{{ products.next_page_number }}">&raquo</a>
+                        </li>
+                    {% else %}
+                        <li class="arrow unavailable">
+                            <a href="">&raquo</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
 {% endblock %}
