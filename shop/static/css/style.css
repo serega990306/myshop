@@ -85,7 +85,7 @@ form.add label{
   border-radius: 3px;
 }
 form.add input[type="submit"]{
-  background: #2a6496;
+  background: #b578cf;
   border-radius: 3px;
   border: 0;
   padding: 5px 10px;
@@ -102,13 +102,19 @@ th, td{
   padding: 5px;
 }
 thead{
-  background: #2a6496;
+  background: #b578cf;
   color: white;
 }
 .btn{
-  background: #2a6496;
+  background: #b578cf;
   color: white;
 }
+
+.btn:hover{
+  background: #fa62a0;
+  color: white;
+}
+
 .btn-light{
   background: #808080;
 }
@@ -129,11 +135,6 @@ thead{
 
 title {
     font-weight: 400;
-}
-
-.city{
-  color: rgba(214,96,126,0.81);
-  font-size: 200%;
 }
 
 .header_row{
@@ -163,15 +164,6 @@ title {
     border-radius: 0px;
 }
 
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
@@ -183,7 +175,7 @@ title {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -202,11 +194,6 @@ title {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
 }
 
 .show {
@@ -333,3 +320,54 @@ ul.pagination {
   ul.pagination li {
     float: left;
 display: block;}
+
+  .search-img{
+      background-image: url("http://image.ibb.co/hRbPbn/lupa.png")
+  }
+
+  .btn-header{
+      outline: none;
+      border: none;
+      border-radius: 0px;
+      height: 50px;
+      background: #e4b6e1;
+      display: inline-block;
+  }
+
+  .shopping-cart-header {
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 15px;
+  }
+
+  .shopping-cart-total {
+      float: right;
+    }
+
+  .badge {
+    background-color: #e4b6e1;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+  .checkout-button {
+  background: #e4b6e1;
+  color:white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 25px 0 15px 0;
+}
+
+  .checkout-button:hover {
+    background: #fa62a0;
+  }

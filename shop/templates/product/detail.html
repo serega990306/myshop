@@ -11,16 +11,17 @@
     <div class="col-sm-4">
       <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.jpg"%}{% endif %}" class="img-responsive">
     </div>
-    <div class="col-sm-8">
-      <h1>{{ product.name }}</h1>
-      <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
-      <p class="price">{{ product.price }} руб.</p>
+    <div class="col-sm-8" style="padding-left: 50px">
+      <h1 class="light" style="font-size: 300%">{{ product.name }}</h1>
+      <h2 class="light"><a style="color: #787878" href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+      <p class="bold" style="font-size: 150%">{{ product.price }} руб.</p>
       <form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
         {{ cart_product_form }}
         {% csrf_token %}
-        <input type="submit" value="Добавить в корзину">
+        <input class="btn" type="submit" value="Добавить в корзину">
       </form>
-      <span>{{ product.description | linebreaks}}</span>
+        <p class="bold">О ТОВАРЕ:</p>
+      <span class="light">{{ product.description | linebreaks}}</span>
     </div>
   </div>
 {% endblock %}
