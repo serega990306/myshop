@@ -6,23 +6,63 @@
 {% endblock %}
 
 {% block content %}
-
+<!--
   <div id="sidebar" class="col-sm-3">
-    <h3 class="bold" style="font-size: 170%;margin: .67em 0">Категории</h3>
-    <ul>
-      <li {% if not category %} class="selected" {% endif %}>
-        <a class="light" style="font-size: 110%" href="{% url "shop:ProductList" %}">Все</a>
-      </li>
-      {% for cat in categories %}
-        <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
-          <a class="light" style="font-size: 110%" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+      <div style="padding: 10px;background-color: #f1f1f1;border-radius: 5px;margin-top: 10px">
+        <h3 class="bold" style="font-size: 170%;margin: 0">Категории</h3>
+        <ul>
+          <li {% if not category %} class="selected" {% endif %}>
+            <a class="light" style="font-size: 110%;{% if not category %}color: white;{% else %}color: black;{% endif %}" href="{% url "shop:ProductList" %}">Все</a>
+          </li>
+          {% for cat in categories %}
+            <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
+              <a class="light" style="font-size: 110%;{% if category.slug == cat.slug %}color: white;{% else %}color: black;{% endif %}" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div style="padding: 10px;background-color: #f1f1f1;border-radius: 5px;margin-top: 20px">
+        <h3 class="bold" style="font-size: 170%;margin: 0">Бренды</h3>
+        <ul>
+          <li {% if not category %} class="selected" {% endif %}>
+            <a class="light" style="font-size: 110%;{% if not category %}color: white;{% else %}color: black;{% endif %}" href="{% url "shop:ProductList" %}">Все</a>
+          </li>
+          {% for cat in categories %}
+            <li {% if category.slug == cat.slug %} class="selected" {% endif %}>
+              <a class="light" style="font-size: 110%;{% if category.slug == cat.slug %}color: white;{% else %}color: black;{% endif %}" href="/category/{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
   </div>
-  <div id="main" class="product_list col-sm-9">
-    <h1 class="bold" style="font-size: 170%">{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
-    <div class="items row">
+  -->
+  <div class="container">
+  <!--
+    <div class="row">
+        <h1 class="bold" style="font-size: 170%">{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
+    </div>
+    -->
+    <form class="form-horizontal" method="post" style="margin-top: 20px">
+        {% csrf_token %}
+        <div>
+            <div class="form-group">
+                <h1 class="col-sm-4 bold" style="font-size: 170%;margin-top: 0px;padding-left: 20px">{% if category %}{{ category.name }}{% else %}Товары{% endif %}</h1>
+                <label for="username" class="col-sm-3 control-label light">Сортировать по:</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="sort">
+                      <option>Новинки</option>
+                      <option>По возрастанию цены</option>
+                      <option>По убыванию цены</option>
+                    </select>
+                </div>
+                <div class="col-sm-2" style="text-align: center">
+                    <input style="width: 180px;height: 35px" class="btn btn-primary hp-banner-register bold" type="submit" value="СОРТИРОВАТЬ">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container">
       {% for product in products %}
           <!--
         <div class="item col-sm-4">

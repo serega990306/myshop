@@ -15,12 +15,42 @@
       <h1 class="light" style="font-size: 300%">{{ product.name }}</h1>
       <h2 class="light"><a style="color: #787878" href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
       <p class="bold" style="font-size: 150%">{{ product.price }} руб.</p>
-      <form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
-        {{ cart_product_form }}
+      <form action="{% url "cart:CartAdd" product.id %}" method="post">
         {% csrf_token %}
-        <input class="btn" type="submit" value="Добавить в корзину">
+        <div class="form-group">
+            <div class="row">
+                <label for="quantity" class="col-sm-2 control-label bold" style="margin-top: 4px">Количество:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="exampleSelect1" name="quantity" style="border-radius: 0;">
+                        {% for var in stock %}
+                            <option>{{ var }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            {% if variations %}
+                <div class="row" style="margin-top: 10px">
+                    <label for="username" class="col-sm-2 control-label bold" style="margin-top: 4px">Выбирите:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="exampleSelect1" name="sort" style="border-radius: 0;">
+                            {% for var in variations %}
+                                <option>{{ var }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            {% endif %}
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2" style="text-align: center;margin-top: 15px">
+                <input style="width: 230px;height: 35px" class="btn btn-primary hp-banner-register bold" type="submit" value="ДОБАВИТЬ В КОРЗИНУ">
+            </div>
+        </div>
+
+        </div>
       </form>
-        <p class="bold">О ТОВАРЕ:</p>
+        <p class="bold">О товаре:</p>
       <span class="light">{{ product.description | linebreaks}}</span>
     </div>
   </div>

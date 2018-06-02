@@ -7,32 +7,46 @@
 {% endblock %}
 
 {% block content %}
-<div>
-    <form class="form-horizontal" method="post">
+<div style="text-align: center">
+    <form class="form-horizontal" method="post" style="max-width: 70%;margin-left: 15%;background: #f1f1f1;margin-top: 50px;margin-bottom: 50px">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" autofocus required id="id_username" placeholder="Email" name="username">
+        <div style="padding: 50px">
+            <p class="bold" style="font-size: 150%;margin-bottom: 20px">РЕГИСТРАЦИЯ</p>
+            <div class="form-group">
+                <label for="username" class="col-sm-2 control-label light">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" autofocus required id="id_username" placeholder="Email" name="username">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" required id="id_password1" placeholder="Password" name="password1">
-                <p style="font-size: 80%">Придумайте пароль не менее 8 символов(из букв и цифр)</p>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 control-label light">Пароль</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" required id="id_password1" placeholder="Пароль" name="password1">
+                    <p class="light" style="font-size: 90%">Придумайте пароль не менее 8 символов(из букв и цифр)</p>
+                </div>
+                  <label for="password" class="col-sm-2 control-label light">Повторите пароль</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" required id="id_password2" placeholder="Пароль" name="password2">
+                </div>
             </div>
-              <label for="password" class="col-sm-2 control-label">Confirm Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" required id="id_password2" placeholder="Confirm Password" name="password2">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label light">Имя</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required id="id_password1" placeholder="Имя" name="name">
+                    <p></p>
+                </div>
+                  <label for="surname" class="col-sm-2 control-label light">Фамилия</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required id="id_password2" placeholder="Фамилия" name="surname">
+                </div>
             </div>
-        </div>
-        {% if reg_error %}
-            <div style="color: red;margin-bottom: 10px">{{ reg_error }}</div>
-        {% endif %}
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-10" style="text-align: center">
-                <input style="width: 200px;height: 40px" class="btn btn-primary hp-banner-register bold" type="submit" value="РЕГИСТРАЦИЯ">
+            {% if reg_error %}
+                <div class="light" style="color: red;margin-bottom: 10px">{{ reg_error }}</div>
+            {% endif %}
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10" style="text-align: center;margin-top: 20px">
+                    <input style="width: 200px;height: 40px" class="btn btn-primary hp-banner-register bold" type="submit" value="РЕГИСТРАЦИЯ">
+                </div>
             </div>
         </div>
     </form>

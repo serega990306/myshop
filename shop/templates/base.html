@@ -18,7 +18,7 @@
 </head>
 <body>
     {% include "includes/header.html" %}
-    {% if top_products %}
+    {% if top_products and not category_slug%}
         {% include "includes/top_sale.html" %}
     {% endif %}
 

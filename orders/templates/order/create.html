@@ -5,24 +5,63 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Оформление заказа</h1>
-  <div class="col-sm-4">
-    <h2>Заполните форму</h2>
-    <form class="order-form" action="." method="post">
-      {{ form.as_p }}
-      {% csrf_token %}
-      <input type="submit" value="Отправить">
-    </form>
-  </div>
+    <h1>Оформление заказа</h1>
+        <div class="col-sm-6">
+        <h2>Заполните форму</h2>
+        <form class="order-form" action="." method="post">
+          {{ form.as_p }}
+          {% csrf_token %}
+            <div style="text-align: center">
+                <input style="width: 200px;height: 40px" class="btn btn-primary hp-banner-register bold" type="submit" value="ОПЛАТИТЬ">
+            </div>
+        </form>
+    </div>
 
-  <div class="order-info col-sm-8">
-    <h2>Ваш заказ</h2>
-    <ul>
-      {% for item in cart  %}
-        <li>
-          {{ item.product.name }} | Количество: {{ item.quantity }} | Цена: {{ item.total_price }}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="order-info col-sm-6">
+        <h2>Ваш заказ</h2>
+        <ul>
+        <div class="row table" style="margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px">
+            <div class="col-sm-3 light">Изображение</div>
+            <div class="col-sm-3 light">Название</div>
+            <div class="col-sm-3 light">Количество</div>
+            <div class="col-sm-3 light">Цена</div>
+        </div>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <div class="row table" style="margin-bottom: 0px;padding: 5px">
+                    <div class="col-sm-3 light">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img style="max-height: 100px" src="{{ product.image.url }}" alt="" />
+                      </a>
+                    </div>
+                    <div class="col-sm-3 light" style="margin-top: 40px">
+                        <a href="{{ product.get_absolute_url }}" style="color: black">{{ product.name }}</a>
+                    </div>
+                    <div class="col-sm-3 light" style="margin-top: 40px">{{ item.quantity }}</div>
+                    <div class="col-sm-3 light" style="margin-top: 40px">{{ item.total_price }} руб.</div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+
+        {% if cart.cupon %}
+            <div class="row table" style="margin-bottom: 0px;padding: 5px">
+                <div class="col-sm-3 light">
+                    "{{ cart.cupon.code }}" скидка {{ cart.cupon.discount }}%
+                </div>
+                <div class="col-sm-3 light"></div>
+                <div class="col-sm-3 light"></div>
+                <div class="col-sm-3 light"> - {{ cart.get_discount|floatformat:"2"}} руб.</div>
+            </div>
+        {% endif %}
+
+            <div class="row table" style="margin-bottom: 0px;padding: 5px">
+                <div class="col-sm-3 light" style="font-size: 110%">
+                    Всего:
+                </div>
+                <div class="col-sm-3 light"></div>
+                <div class="col-sm-3 light"></div>
+                <div class="col-sm-3 light" style="font-size: 110%">{{ cart.get_total_price_after_discount|floatformat:"2"}}</div>
+            </div>
+        </ul>
+    </div>
 {% endblock %}

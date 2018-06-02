@@ -4,6 +4,7 @@ from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from cupons.forms import CuponApllyForm
 
 
 @require_POST
@@ -27,6 +28,7 @@ def CartRemove(request, product_id):
 
 @csrf_protect
 def CartDetail(request):
+    content = {}
     cart = Cart(request)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm(
@@ -34,4 +36,7 @@ def CartDetail(request):
                                             'quantity': item['quantity'],
                                             'update': True
                                         })
-    return render(request, 'cart/detail.html', {'cart': cart})
+    content['cart'] = cart
+    cupon_apply_form = CuponApllyForm()
+    content['cupon_apply_form'] = cupon_apply_form
+    return render(request, 'cart/detail.html', content)

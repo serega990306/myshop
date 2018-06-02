@@ -25,7 +25,11 @@ SECRET_KEY = '18q*=e=ykfdeqob)7v#s9@_j=be%^x*^wkbj+h&@&t18^5xmn5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'http://185.201.8.84/',
+    '185.201.8.84',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -41,6 +45,9 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'yandex_money',
+    'adminka',
+    'cupons',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +88,13 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 
 #'ENGINE': 'django.db.backends.sqlite3',
 #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+#'ENGINE': 'django.db.backends.mysql',
+#'NAME': 'shop',
+#'USER': 'root',
+#'PASSWORD': '123456',
+#'HOST': 'localhost',
+#'PORT': '3306',
 
 DATABASES = {
     'default': {
@@ -131,6 +145,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'service@kcosmetic.ru'
+EMAIL_HOST_PASSWORD = 'X6wzgh49'
+
+YANDEX_MONEY_DEBUG = False
+YANDEX_MONEY_SCID = 12345
+YANDEX_MONEY_SHOP_ID = 56789
+YANDEX_MONEY_SHOP_PASSWORD = 'password'
+YANDEX_MONEY_FAIL_URL = 'https://185.201.8.84/fail-payment/'
+YANDEX_MONEY_SUCCESS_URL = 'https://185.201.8.84/success-payment/'
+# информировать о случаях, когда модуль вернул Яндекс.Кассе ошибку
+YANDEX_MONEY_MAIL_ADMINS_ON_PAYMENT_ERROR = True

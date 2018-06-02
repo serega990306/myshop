@@ -1,16 +1,27 @@
 from django.db import models
 from shop.models import Product
+from cupons.models import Cupon
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 
 
 class Order(models.Model):
+    email = models.CharField(verbose_name='Email', max_length=50, default='')
     first_name = models.CharField(verbose_name='Имя', max_length=50)
     last_name = models.CharField(verbose_name='Фамилия', max_length=50)
-    email = models.EmailField(verbose_name='Email')
-    address =  models.CharField(verbose_name='Адрес', max_length=250)
-    postal_code = models.CharField(verbose_name='Почтовый код', max_length=20)
-    city = models.CharField(verbose_name='Город', max_length=100)
+    country = models.CharField(verbose_name='Страна', max_length=250, default='')
+    state = models.CharField(verbose_name='Область', max_length=250, default='')
+    city = models.CharField(verbose_name='Город', max_length=100, default='')
+    street = models.CharField(verbose_name='Улица', max_length=250, default='')
+    home = models.CharField(verbose_name='Дом', max_length=250, default='')
+    appartment = models.CharField(verbose_name='Квартира', max_length=250, default='')
+    index = models.CharField(verbose_name='Почтовый код', max_length=20, default='')
+    phone_number = models.CharField(verbose_name='Номер телефона', max_length=20, default='')
+    cupon = models.ForeignKey(Cupon, on_delete=models.CASCADE, related_name='orders', null=True, blank=True)
+    discount = models.IntegerField(default=0, validators=[MinValueValidator(0),
+                                                          MaxValueValidator(100)])
     created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     paid = models.BooleanField(verbose_name='Оплачен', default=False)
@@ -24,7 +35,8 @@ class Order(models.Model):
         return 'Заказ: {}'.format(self.id)
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - total_cost * (self.discount / Decimal('100'))
 
 
 class OrderItem(models.Model):

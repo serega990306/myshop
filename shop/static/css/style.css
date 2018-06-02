@@ -175,9 +175,19 @@ title {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 250px;
+    max-width: 500px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+}
+
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
 }
 
 /* Links inside the dropdown */
@@ -188,11 +198,38 @@ title {
     display: block;
 }
 
+.dropdown-content1 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content1 p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
 
+.dropdown-content1 a:hover {background-color: #f1f1f1}
+
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-content1 {
     display: block;
 }
 
@@ -235,7 +272,7 @@ title {
 }
 
 #top-sale{
-    background: url(../img/3.png) no-repeat center top;
+    background: url(../img/3.jpg) no-repeat center top;
   padding-top: 20px;
   text-align: center;
   background-attachment: relative;
@@ -370,4 +407,9 @@ display: block;}
 
   .checkout-button:hover {
     background: #fa62a0;
+  }
+
+  .table {
+      border-bottom: 1px solid #E8E8E8;
+      text-align: center;
   }
